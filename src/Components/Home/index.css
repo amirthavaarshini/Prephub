@@ -1,0 +1,18 @@
+.home-btn{
+    color: black;
+    background-color: aqua;
+    width: 250px;
+    height: 70px;
+    border-radius: 30px;
+    font-size: 160%;
+    font-weight: bold;
+    
+}
+
+.home-container{
+    background-color:black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
