@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
+import questions from "./questions";
 
 const Quiz = () => {
 
 
     const [showAns, setShowAns] = useState(false);
+    const [randomIndex, setRandomIndex] = useState(0)
 
     const handleShowBtn = () => {
         setShowAns(prev => !prev);
@@ -14,10 +16,33 @@ const Quiz = () => {
         window.location.reload();
     }
 
+    useEffect(() => {
+        console.log("onload");
+        let num = Math.floor((Math.random()*questions.length));
+        console.log(num);
+        setRandomIndex(num);
+    }, [])                                  //[] - dependency array
+
+
+
+    // useEffect(() => {
+    //     console.log("show ans is changed");
+    // }, [showAns]) 
+
+    // useEffect(() => {
+    //     console.log("text is updated");
+    // }, [sampleState])
+    
+    // useEffect(() => {
+    //     console.log("always");
+    // }) 
+
+    
+
     return (
         <>
             <div className="quiz-container">
-                <div className="quiz-qstn">What is React?</div>
+                <div className="quiz-qstn">{questions[randomIndex].question}</div>
                 <div className="text-container">
                     <textarea rows="5" className="quiz-text" placeholder="Type your Answer here."></textarea>
                 </div>
@@ -28,7 +53,7 @@ const Quiz = () => {
                 </div>
                 {showAns &&
                     <>
-                        <div className="answer-container" >It is a a development server that uses Webpack to compile React, JSX, and ES6, auto-prefix CSS files.</div>
+                        <div className="answer-container" >{questions[randomIndex].answer}</div>
                         <div className="show-hide-container">
                             <button className="show-btn" onClick={handleNxt}>Next Question</button>
                         </div>
